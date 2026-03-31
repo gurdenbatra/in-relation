@@ -5,12 +5,13 @@ import { RoundedBox } from '@react-three/drei'
 const CLAY = { roughness: 0.8, metalness: 0.0 }
 
 const CONFIGS = {
-  leaf:        { color: '#a8c890' },
-  cobblestone: { color: '#9a8e80' },
-  pigeon:      { color: '#b8b0a8' },
-  bottle:      { color: '#98b898' },
-  sign:        { color: '#c8a878' },
-  bench:       { color: '#8a7060' },
+  leaf:         { color: '#a8c890' },
+  cobblestone:  { color: '#9a8e80' },
+  pigeon:       { color: '#b8b0a8' },
+  bottle:       { color: '#98b898' },
+  sign:         { color: '#c8a878' },
+  bench:        { color: '#8a7060' },
+  fernsehturm:  { color: '#9a8e80' },
 }
 
 function LeafMesh({ color }) {
@@ -45,7 +46,63 @@ function BenchMesh({ color }) {
   </group>
 }
 
-const MESHES = { leaf: LeafMesh, cobblestone: CobblestoneMesh, pigeon: PigeonMesh, bottle: BottleMesh, sign: SignMesh, bench: BenchMesh }
+/** Berlin TV Tower (Fernsehturm): tall spike + sphere + two orbiting moons */
+function FernsehturmMesh({ color }) {
+  const moon1Ref = useRef()
+  const moon2Ref = useRef()
+
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime()
+    if (moon1Ref.current) {
+      moon1Ref.current.position.x = Math.cos(t * 0.6) * 0.9
+      moon1Ref.current.position.z = Math.sin(t * 0.6) * 0.9
+      moon1Ref.current.position.y = 0.35
+    }
+    if (moon2Ref.current) {
+      moon2Ref.current.position.x = Math.cos(t * 0.35 + 2.1) * 1.4
+      moon2Ref.current.position.z = Math.sin(t * 0.35 + 2.1) * 1.4
+      moon2Ref.current.position.y = 0.25
+    }
+  })
+
+  return <group>
+    {/* Tower shaft */}
+    <mesh position={[0, -0.3, 0]}>
+      <cylinderGeometry args={[0.05, 0.09, 1.6, 8]} />
+      <meshStandardMaterial color={color} {...CLAY} />
+    </mesh>
+    {/* Antenna spike */}
+    <mesh position={[0, 0.75, 0]}>
+      <cylinderGeometry args={[0.01, 0.04, 0.7, 8]} />
+      <meshStandardMaterial color={color} {...CLAY} />
+    </mesh>
+    {/* Ball / observation sphere */}
+    <mesh position={[0, 0.35, 0]}>
+      <sphereGeometry args={[0.28, 14, 10]} />
+      <meshStandardMaterial color={color} {...CLAY} />
+    </mesh>
+    {/* Moon 1 — closer, faster orbit */}
+    <mesh ref={moon1Ref}>
+      <sphereGeometry args={[0.1, 8, 6]} />
+      <meshStandardMaterial color="#c8b89a" roughness={0.7} metalness={0} />
+    </mesh>
+    {/* Moon 2 — farther, slower orbit */}
+    <mesh ref={moon2Ref}>
+      <sphereGeometry args={[0.07, 8, 6]} />
+      <meshStandardMaterial color="#a08060" roughness={0.7} metalness={0} />
+    </mesh>
+  </group>
+}
+
+const MESHES = {
+  leaf:        LeafMesh,
+  cobblestone: CobblestoneMesh,
+  pigeon:      PigeonMesh,
+  bottle:      BottleMesh,
+  sign:        SignMesh,
+  bench:       BenchMesh,
+  fernsehturm: FernsehturmMesh,
+}
 
 export default function ClayObject({ type = 'cobblestone', scrollY }) {
   const groupRef = useRef()

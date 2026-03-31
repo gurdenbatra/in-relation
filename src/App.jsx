@@ -12,8 +12,8 @@ export default function App() {
     <main style={{ background: '#f5f0e8' }}>
       <IntroSection />
       <FootstepsSection />
-      <NarrativeSection />
-      <StampSection />
+      {/* <NarrativeSection /> */}
+      {/* <StampSection /> */}
       <PeopleSection />
       <RoadFork />
       <WalksSection />

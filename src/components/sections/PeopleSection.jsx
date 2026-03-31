@@ -3,7 +3,8 @@ import ThreeScene from '../three/ThreeScene.jsx'
 export default function PeopleSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: '#f5f0e8' }}>
-      <ThreeScene objectType="pigeon" className="absolute top-16 right-16 w-40 h-40 hidden md:block" mobilePosition={{ top: '16px', right: '16px' }} />
+      {/* Berlin TV Tower with two orbiting moons — replaces pigeon */}
+      <ThreeScene objectType="fernsehturm" className="absolute top-16 right-16 w-44 h-44 hidden md:block" mobilePosition={{ top: '16px', right: '16px' }} />
       <div className="relative z-10 flex flex-col md:flex-row items-center gap-12 max-w-4xl mx-8">
         <div className="flex-shrink-0 overflow-hidden rounded-sm" style={{ width: '360px', maxWidth: '90vw', transform: 'rotate(-1.5deg)' }}>
           <img src="/images/IMG_2679.webp" alt="Blasius and Gurden, founders of In Relation" className="w-full h-auto object-cover" loading="lazy" />
