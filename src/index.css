@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap');
 
 @theme {
   --color-cream: #f5f0e8;
@@ -36,6 +37,29 @@ body {
 }
 .stamp-landed {
   animation: stamp-land 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.intro-stamp-wrap {
+  position: relative;
+}
+
+.stamp-impact-foot {
+  position: absolute;
+  top: -38px;
+  right: -24px;
+  opacity: 0;
+  transform: translate(36px, -30px) rotate(-14deg) scale(0.8);
+  pointer-events: none;
+}
+
+.stamp-landed .stamp-impact-foot {
+  animation: stamp-foot-impact 0.32s ease-out 1;
+}
+
+@keyframes stamp-foot-impact {
+  0% { opacity: 0; transform: translate(38px, -34px) rotate(-16deg) scale(0.76); }
+  40% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
+  100% { opacity: 0.7; transform: translate(0, 0) rotate(0deg) scale(1); }
 }
 
 @keyframes sit-to-stand {

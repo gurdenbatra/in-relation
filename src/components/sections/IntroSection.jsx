@@ -3,15 +3,15 @@ import Footstep from '../ui/Footstep.jsx'
 
 // Hero footstep trail: walks diagonally across the lower third
 const HERO_STEPS = [
-  { side: 'left',  left: '8%',  top: '68%' },
-  { side: 'right', left: '17%', top: '72%' },
-  { side: 'left',  left: '26%', top: '70%' },
-  { side: 'right', left: '35%', top: '73%' },
-  { side: 'left',  left: '44%', top: '70%' },
-  { side: 'right', left: '53%', top: '73%' },
-  { side: 'left',  left: '62%', top: '70%' },
-  { side: 'right', left: '71%', top: '73%' },
-  { side: 'left',  left: '80%', top: '70%' },
+  { side: 'left',  left: '8%',  top: '67%', scale: 0.85 },
+  { side: 'right', left: '17%', top: '71%', scale: 0.9 },
+  { side: 'left',  left: '26%', top: '69%', scale: 0.94 },
+  { side: 'right', left: '35%', top: '72%', scale: 0.98 },
+  { side: 'left',  left: '44%', top: '69%', scale: 1.02 },
+  { side: 'right', left: '53%', top: '72%', scale: 1.06 },
+  { side: 'left',  left: '62%', top: '69%', scale: 1.1 },
+  { side: 'right', left: '71%', top: '72%', scale: 1.13 },
+  { side: 'left',  left: '80%', top: '69%', scale: 1.16 },
 ]
 
 function clamp01(v) { return Math.max(0, Math.min(1, v)) }
@@ -77,12 +77,17 @@ export default function IntroSection() {
       {/* Sticky inner viewport */}
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
 
-        {/* Background: video if available, else dark gradient fallback */}
-        {/* TODO: replace with video path when a hero video is available */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(160deg, #1a1208 0%, #2d2520 50%, #0e0c08 100%)',
-        }} />
+        {/* Background looping video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+        >
+          <source src="/20240422_080204.mp4" type="video/mp4" />
+        </video>
 
         {/* Subtle vignette overlay */}
         <div style={{
@@ -117,7 +122,7 @@ export default function IntroSection() {
         <div ref={stepsRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
           {HERO_STEPS.map((s, i) => (
             <div key={i} style={{ position: 'absolute', top: s.top, left: s.left, opacity: 0 }}>
-              <Footstep side={s.side} scale={0.9} style={{ filter: 'brightness(1.8) opacity(0.65)' }} />
+              <Footstep side={s.side} scale={s.scale} style={{ filter: 'brightness(1.45) opacity(0.58)' }} />
             </div>
           ))}
         </div>
@@ -125,9 +130,10 @@ export default function IntroSection() {
         {/* === Layer 3: IN RELATION stamp === */}
         <div
           ref={stampWrapRef}
+          className="intro-stamp-wrap"
           style={{
             position: 'absolute', top: '50%', left: '50%',
-            transform: 'translate(-50%, -50%) scale(1.15)',
+            transform: 'translate(-50%, -50%) scale(1.12)',
             opacity: 0,
             border: '7px solid rgba(245,240,232,0.9)',
             padding: '10px 32px',
@@ -135,14 +141,18 @@ export default function IntroSection() {
             transition: 'margin-top 0.1s',
           }}
         >
+          <div className="stamp-impact-foot">
+            <Footstep side="right" scale={1.35} style={{ filter: 'brightness(1.3) opacity(0.95)' }} />
+          </div>
           <p style={{
-            fontFamily: '"Inter", system-ui, sans-serif',
-            fontWeight: 900,
+            fontFamily: '"Cormorant Garamond", Georgia, serif',
+            fontWeight: 700,
             fontSize: 'clamp(44px, 10vw, 90px)',
             color: 'rgba(245,240,232,0.92)',
-            letterSpacing: '-0.02em',
+            letterSpacing: '0.02em',
             lineHeight: 1,
             textAlign: 'center',
+            textTransform: 'uppercase',
           }}>
             IN<br />RELATION
           </p>

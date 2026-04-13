@@ -7,14 +7,14 @@ gsap.registerPlugin(ScrollTrigger)
 
 // Natural walking trail: left-right alternating, offset laterally, moving forward (diagonal)
 const FOOTSTEP_POSITIONS = [
-  { side: 'left',  top: '18%', left: '10%' },
-  { side: 'right', top: '26%', left: '20%' },
-  { side: 'left',  top: '34%', left: '30%' },
-  { side: 'right', top: '42%', left: '40%' },
-  { side: 'left',  top: '50%', left: '50%' },
-  { side: 'right', top: '57%', left: '60%' },
-  { side: 'left',  top: '63%', left: '70%' },
-  { side: 'right', top: '69%', left: '80%' },
+  { side: 'left',  top: '17%', left: '11%', scale: 0.95 },
+  { side: 'right', top: '25%', left: '20%', scale: 1.02 },
+  { side: 'left',  top: '33%', left: '28%', scale: 1.0 },
+  { side: 'right', top: '41%', left: '39%', scale: 1.08 },
+  { side: 'left',  top: '49%', left: '49%', scale: 1.06 },
+  { side: 'right', top: '56%', left: '59%', scale: 1.12 },
+  { side: 'left',  top: '63%', left: '69%', scale: 1.1 },
+  { side: 'right', top: '70%', left: '79%', scale: 1.16 },
 ]
 
 export default function FootstepsSection() {
@@ -26,9 +26,9 @@ export default function FootstepsSection() {
     steps.forEach((step, i) => {
       const tween = gsap.fromTo(
         step,
-        { opacity: 0, scale: 0.75 },
+        { opacity: 0, scale: 0.72, y: 12, rotate: sideToAngle(i) },
         {
-          opacity: 1, scale: 1, duration: 0.45, ease: 'power2.out',
+          opacity: 1, scale: 1, y: 0, rotate: sideToAngle(i), duration: 0.45, ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: `top+=${i * 75} center`,
@@ -57,7 +57,7 @@ export default function FootstepsSection() {
           className="footstep-item absolute"
           style={{ top: pos.top, left: pos.left, opacity: 0 }}
         >
-          <Footstep side={pos.side} scale={1.1} />
+          <Footstep side={pos.side} scale={pos.scale} />
         </div>
       ))}
       <p
@@ -68,4 +68,8 @@ export default function FootstepsSection() {
       </p>
     </section>
   )
+}
+
+function sideToAngle(index) {
+  return index % 2 === 0 ? 3 : -3
 }
