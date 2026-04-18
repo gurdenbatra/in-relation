@@ -9,13 +9,23 @@ describe('shouldConvert', () => {
   it('returns false when output exists and output mtime >= source mtime', () => {
     const srcMtime = new Date('2025-01-01')
     const outMtime = new Date('2025-01-02')
-    expect(shouldConvert('/src/img.HEIC', '/out/img.webp', true, srcMtime, outMtime)).toBe(false)
+    expect(shouldConvert('/src/img.HEIC', '/out/img.webp', true, srcMtime, outMtime, 2_000_000, 400_000)).toBe(
+      false,
+    )
   })
 
   it('returns true when output exists but source is newer', () => {
     const srcMtime = new Date('2025-01-03')
     const outMtime = new Date('2025-01-01')
     expect(shouldConvert('/src/img.HEIC', '/out/img.webp', true, srcMtime, outMtime)).toBe(true)
+  })
+
+  it('returns true when output is a tiny placeholder but source is a large photo', () => {
+    const srcMtime = new Date('2025-01-01')
+    const outMtime = new Date('2025-01-02')
+    expect(shouldConvert('/src/img.HEIC', '/out/img.webp', true, srcMtime, outMtime, 2_000_000, 6_000)).toBe(
+      true,
+    )
   })
 })
 
@@ -30,9 +40,9 @@ describe('getOutputPath', () => {
     expect(result).toBe('/public/images/photo.webp')
   })
 
-  it('keeps jpg extension as-is', () => {
+  it('converts jpg to webp output path', () => {
     const result = getOutputPath('3Hasenheide4.jpg', '/public/images')
-    expect(result).toBe('/public/images/3Hasenheide4.jpg')
+    expect(result).toBe('/public/images/3Hasenheide4.webp')
   })
 
   it('replaces spaces with hyphens in HEIC output name', () => {
@@ -40,8 +50,8 @@ describe('getOutputPath', () => {
     expect(result).toBe('/public/images/7Treptower-Park5.webp')
   })
 
-  it('replaces spaces with hyphens in jpg output name', () => {
+  it('replaces spaces with hyphens in jpg output name (webp)', () => {
     const result = getOutputPath('5Frankfurter Allee1.jpg', '/public/images')
-    expect(result).toBe('/public/images/5Frankfurter-Allee1.jpg')
+    expect(result).toBe('/public/images/5Frankfurter-Allee1.webp')
   })
 })

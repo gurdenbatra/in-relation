@@ -3,10 +3,10 @@ import LayeredPhoto from '../ui/LayeredPhoto.jsx'
 import ThreeScene from '../three/ThreeScene.jsx'
 
 const NARRATIVE_PHOTOS = [
-  { src: '/images/11Markthalle7.jpg', style: { top: '5%', right: '-3%', width: '360px', transform: 'rotate(-5deg)', zIndex: 1 }, parallaxSpeed: 0.45 },
-  { src: '/images/4Kott2.jpg', style: { bottom: '8%', left: '-2%', width: '300px', transform: 'rotate(4deg)', zIndex: 2 }, parallaxSpeed: 0.6 },
-  { src: '/images/7Treptower-Park13.jpg', style: { top: '35%', left: '3%', width: '220px', transform: 'rotate(-2deg)', zIndex: 0 }, parallaxSpeed: 0.35 },
-  { src: '/images/12Körnerpark7.jpg', style: { bottom: '20%', right: '4%', width: '250px', transform: 'rotate(6deg)', zIndex: 3 }, parallaxSpeed: 0.55 },
+  { src: '/images/11Markthalle7.webp', style: { top: '5%', right: '-3%', width: '360px', transform: 'rotate(-5deg)', zIndex: 1 }, parallaxSpeed: 0.45 },
+  { src: '/images/4Kott2.webp', style: { bottom: '8%', left: '-2%', width: '300px', transform: 'rotate(4deg)', zIndex: 2 }, parallaxSpeed: 0.6 },
+  { src: '/images/7Treptower-Park13.webp', style: { top: '35%', left: '3%', width: '220px', transform: 'rotate(-2deg)', zIndex: 0 }, parallaxSpeed: 0.35 },
+  { src: '/images/12Körnerpark7.webp', style: { bottom: '20%', right: '4%', width: '250px', transform: 'rotate(6deg)', zIndex: 3 }, parallaxSpeed: 0.55 },
 ]
 
 export default function NarrativeSection() {
