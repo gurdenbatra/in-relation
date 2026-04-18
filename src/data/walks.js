@@ -40,6 +40,19 @@ export const walks = [
   },
   {
     id: 4,
+    name: 'Hasenheide Open Walk',
+    location: 'Hasenheide Park, Neukölln',
+    date: 'April 2025',
+    question: 'How would you feel if the park puts fences around you?',
+    images: ['/images/3Hasenheide4.webp', '/images/3Hasenheide7.webp', '/images/3Hasenheide10.webp'],
+    hasPlaceholder: false,
+    video: null,
+    journalText: `The park holds so many different worlds at once — the dog walkers, the chess players, the napping students. We tried to move through without destination, paying attention to the layered sounds of each zone. Someone was playing guitar. Someone was crying quietly on a bench. The city was audible everywhere.`,
+    threeObjectType: 'pigeon',
+    scrollMultiplier: 0.6,
+  },
+  {
+    id: 5,
     name: 'Kotti',
     location: 'Kottbusser Tor, Kreuzberg',
     date: 'May 2025',
@@ -52,7 +65,7 @@ export const walks = [
     scrollMultiplier: 1.2,
   },
   {
-    id: 5,
+    id: 6,
     name: 'Frankfurter Allee',
     location: 'Frankfurter Allee, Friedrichshain',
     date: 'June 2025',
@@ -65,7 +78,7 @@ export const walks = [
     scrollMultiplier: 0.9,
   },
   {
-    id: 6,
+    id: 7,
     name: 'Paul-Lincke-Ufer',
     location: 'Paul-Lincke-Ufer, Kreuzberg',
     date: 'July 2025',
@@ -79,7 +92,7 @@ export const walks = [
     scrollMultiplier: 0.7,
   },
   {
-    id: 7,
+    id: 8,
     name: 'Treptower Park',
     location: 'Treptower Park, Treptow',
     date: 'August 2025',
@@ -92,7 +105,7 @@ export const walks = [
     scrollMultiplier: 1.1,
   },
   {
-    id: 8,
+    id: 9,
     name: 'Görlitzer Park',
     location: 'Görlitzer Park, Kreuzberg',
     date: 'September 2025',
@@ -105,7 +118,7 @@ export const walks = [
     scrollMultiplier: 0.5,
   },
   {
-    id: 9,
+    id: 10,
     name: 'Karl-Marx-Strasse',
     location: 'Karl-Marx-Strasse, Neukölln',
     date: 'October 2025',
@@ -118,7 +131,7 @@ export const walks = [
     scrollMultiplier: 1.3,
   },
   {
-    id: 10,
+    id: 11,
     name: 'Oranienplatz II',
     location: 'Oranienplatz, Kreuzberg',
     date: 'November 2025',
@@ -131,7 +144,7 @@ export const walks = [
     scrollMultiplier: 0.9,
   },
   {
-    id: 11,
+    id: 12,
     name: 'Markthalle Neun',
     location: 'Markthalle Neun, Kreuzberg',
     date: 'December 2025',
@@ -144,7 +157,7 @@ export const walks = [
     scrollMultiplier: 0.8,
   },
   {
-    id: 12,
+    id: 13,
     name: 'Körnerpark',
     location: 'Körnerpark, Neukölln',
     date: 'February 2026',
@@ -157,7 +170,7 @@ export const walks = [
     scrollMultiplier: 0.6,
   },
   {
-    id: 13,
+    id: 14,
     name: 'Südkiez:',
     location: 'Südkiez:, Freidrichshain',
     date: 'March 2026',
