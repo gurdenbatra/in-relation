@@ -77,14 +77,33 @@ export default function IntroSection() {
       {/* Sticky inner viewport */}
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
 
-        {/* Background looping video */}
+        {/* Background: solid under masked video so faded regions read as a calm plate behind type */}
+        <div
+          aria-hidden
+          style={{ position: 'absolute', inset: 0, background: '#2d2520' }}
+        />
+        {/* Video with vertical opacity mask — weaker coverage behind headline, stamp, and subtitle */}
         <video
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            WebkitMaskImage:
+              'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.18) 14%, rgba(255,255,255,0.88) 30%, rgba(255,255,255,0.92) 40%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.9) 60%, rgba(255,255,255,0.9) 70%, rgba(255,255,255,0.2) 82%, rgba(255,255,255,0) 94%)',
+            WebkitMaskSize: '100% 100%',
+            WebkitMaskRepeat: 'no-repeat',
+            maskImage:
+              'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.18) 14%, rgba(255,255,255,0.88) 30%, rgba(255,255,255,0.92) 40%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.9) 60%, rgba(255,255,255,0.9) 70%, rgba(255,255,255,0.2) 82%, rgba(255,255,255,0) 94%)',
+            maskSize: '100% 100%',
+            maskRepeat: 'no-repeat',
+          }}
         >
           <source src="/20240422_080204.mp4" type="video/mp4" />
         </video>
