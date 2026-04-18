@@ -49,9 +49,9 @@ function listRasterAndVideo(walkDirPath) {
   return out
 }
 
-async function syncWalkFolder(walkId, folderName) {
+async function syncWalkFolder(walkId, folderName, walksRootDir) {
   const srcDir = path.join(IMAGES_DIR, folderName)
-  const destDir = path.join(PUBLIC_IMAGES, 'walks', String(walkId))
+  const destDir = path.join(walksRootDir, String(walkId))
   fs.mkdirSync(destDir, { recursive: true })
 
   const urls = []
@@ -138,7 +138,7 @@ function cleanLegacyPublicImages() {
   for (const name of fs.readdirSync(PUBLIC_IMAGES)) {
     const full = path.join(PUBLIC_IMAGES, name)
     if (fs.statSync(full).isDirectory()) {
-      if (name === 'walks') continue
+      if (name === 'walks' || name.startsWith('.walks-staging-')) continue
       fs.rmSync(full, { recursive: true, force: true })
       console.log(`  removed public/images/${name}/`)
       continue
@@ -152,20 +152,58 @@ function cleanLegacyPublicImages() {
   }
 }
 
+/**
+ * Remove staging dirs left after a crashed sync. Skip dirs owned by a live process
+ * (another concurrent `sync-walk-images`); name embeds `.walks-staging-<pid>-<time>/`.
+ */
+function removeStaleWalkStagingDirs() {
+  if (!fs.existsSync(PUBLIC_IMAGES)) return
+  for (const name of fs.readdirSync(PUBLIC_IMAGES)) {
+    if (!name.startsWith('.walks-staging-')) continue
+    const m = name.match(/^\.walks-staging-(\d+)-/)
+    const ownerPid = m ? Number(m[1]) : NaN
+    if (!Number.isFinite(ownerPid)) continue
+    try {
+      process.kill(ownerPid, 0)
+      continue
+    } catch (e) {
+      if (e.code !== 'ESRCH') continue
+    }
+    const full = path.join(PUBLIC_IMAGES, name)
+    fs.rmSync(full, { recursive: true, force: true })
+    console.log(`  removed stale ${name}/`)
+  }
+}
+
 async function run() {
   fs.mkdirSync(PUBLIC_IMAGES, { recursive: true })
-  const walksPublic = path.join(PUBLIC_IMAGES, 'walks')
-  fs.rmSync(walksPublic, { recursive: true, force: true })
+  removeStaleWalkStagingDirs()
 
   cleanLegacyPublicImages()
 
+  const walksPublic = path.join(PUBLIC_IMAGES, 'walks')
+  const walksStaging = path.join(
+    PUBLIC_IMAGES,
+    `.walks-staging-${process.pid}-${Date.now()}`,
+  )
+  fs.mkdirSync(walksStaging, { recursive: true })
+
   const assetsById = {}
-  const walkDirs = listWalkDirs()
+  const walkDirs = listWalkDirs().sort((a, b) => {
+    const na = Number(a.match(WALK_DIR_RE)?.[1] ?? 0)
+    const nb = Number(b.match(WALK_DIR_RE)?.[1] ?? 0)
+    return na - nb
+  })
   for (const folderName of walkDirs) {
     const m = folderName.match(WALK_DIR_RE)
     const walkId = Number(m[1])
-    assetsById[walkId] = await syncWalkFolder(walkId, folderName)
+    assetsById[walkId] = await syncWalkFolder(walkId, folderName, walksStaging)
   }
+
+  if (fs.existsSync(walksPublic)) {
+    fs.rmSync(walksPublic, { recursive: true, force: true })
+  }
+  fs.renameSync(walksStaging, walksPublic)
 
   await syncFoundersPhoto()
   writeAssetsFile(assetsById)

@@ -12,8 +12,8 @@
     "test:run": "vitest run",
     "convert-images": "node scripts/convert-images.js",
     "sync-walk-images": "node scripts/sync-walk-images.js",
-    "predev": "npm run sync-walk-images && npm run convert-images",
-    "prebuild": "npm run sync-walk-images && npm run convert-images"
+    "predev": "node scripts/sync-walk-images.js && node scripts/convert-images.js",
+    "prebuild": "node scripts/sync-walk-images.js && node scripts/convert-images.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -37,6 +37,7 @@
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
+    "ffmpeg-static": "^5.3.0",
     "globals": "^17.4.0",
     "jsdom": "^29.0.0",
     "postcss": "^8.5.8",

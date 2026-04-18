@@ -3,10 +3,23 @@ import fs from 'fs'
 import os from 'os'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { createRequire } from 'module'
 import { execFile } from 'child_process'
 import { promisify } from 'util'
 
+const require = createRequire(import.meta.url)
 const execFileAsync = promisify(execFile)
+
+/** Prefer bundled ffmpeg (Netlify/Linux has no system ffmpeg). */
+function resolveFfmpegBinary() {
+  try {
+    const bundled = require('ffmpeg-static')
+    if (typeof bundled === 'string' && bundled && fs.existsSync(bundled)) return bundled
+  } catch {
+    /* optional at install time */
+  }
+  return 'ffmpeg'
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const IMAGES_DIR = path.join(__dirname, '..', 'images')
@@ -56,7 +69,7 @@ async function sharpToWebp(srcPath, outPath) {
 
 /** ffmpeg often decodes iPhone HEIC to broken tiny frames; use only as last resort. */
 async function ffmpegHeicToWebp(srcPath, outPath) {
-  await execFileAsync('ffmpeg', [
+  await execFileAsync(resolveFfmpegBinary(), [
     '-hide_banner',
     '-loglevel',
     'error',
@@ -97,6 +110,7 @@ function removeLegacyRastersInPublic(safeBase) {
 }
 
 export async function convertRasterToWebp(srcPath, outPath, ext) {
+  fs.mkdirSync(path.dirname(outPath), { recursive: true })
   if (ext === '.heic' && process.platform === 'darwin') {
     await sipsHeicToPngThenWebp(srcPath, outPath)
     return
