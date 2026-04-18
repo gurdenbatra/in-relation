@@ -67,23 +67,33 @@ async function sharpToWebp(srcPath, outPath) {
     .toFile(outPath)
 }
 
-/** ffmpeg often decodes iPhone HEIC to broken tiny frames; use only as last resort. */
+/**
+ * Linux/CI: decode HEIC with ffmpeg, then WebP with sharp. Direct ffmpeg→libwebp
+ * often yields crushed blacks / wrong gamma on iPhone HDR HEIC.
+ */
 async function ffmpegHeicToWebp(srcPath, outPath) {
-  await execFileAsync(resolveFfmpegBinary(), [
-    '-hide_banner',
-    '-loglevel',
-    'error',
-    '-i',
-    srcPath,
-    '-vf',
-    `scale=${MAX_DIMENSION}:${MAX_DIMENSION}:force_original_aspect_ratio=decrease`,
-    '-c:v',
-    'libwebp',
-    '-quality',
-    String(WEBP_QUALITY),
-    '-y',
-    outPath,
-  ])
+  const tmpPng = path.join(
+    os.tmpdir(),
+    `in-relation-ff-heic-${process.pid}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}.png`,
+  )
+  try {
+    await execFileAsync(resolveFfmpegBinary(), [
+      '-hide_banner',
+      '-loglevel',
+      'error',
+      '-i',
+      srcPath,
+      '-vf',
+      `scale=${MAX_DIMENSION}:${MAX_DIMENSION}:force_original_aspect_ratio=decrease,format=rgb24`,
+      '-frames:v',
+      '1',
+      '-y',
+      tmpPng,
+    ])
+    await sharpToWebp(tmpPng, outPath)
+  } finally {
+    if (fs.existsSync(tmpPng)) fs.unlinkSync(tmpPng)
+  }
 }
 
 /** macOS decodes HEIC reliably; then sharp resizes/compresses to WebP. */

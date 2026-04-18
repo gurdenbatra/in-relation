@@ -12,8 +12,7 @@
     "test:run": "vitest run",
     "convert-images": "node scripts/convert-images.js",
     "sync-walk-images": "node scripts/sync-walk-images.js",
-    "predev": "node scripts/sync-walk-images.js && node scripts/convert-images.js",
-    "prebuild": "node scripts/sync-walk-images.js && node scripts/convert-images.js"
+    "prepare-images": "node scripts/sync-walk-images.js && node scripts/convert-images.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
