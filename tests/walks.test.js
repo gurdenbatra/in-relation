@@ -4,8 +4,11 @@ import { walks, nextWalks } from '../src/data/walks.js'
 const REQUIRED_WALK_FIELDS = ['id', 'name', 'location', 'question', 'images', 'hasPlaceholder', 'journalText', 'threeObjectType']
 
 describe('walks data', () => {
-  it('has exactly 12 walks', () => {
-    expect(walks).toHaveLength(12)
+  it('walk ids run from 1 to walks.length without gaps', () => {
+    expect(walks.length).toBeGreaterThan(0)
+    walks.forEach((walk, i) => {
+      expect(walk.id).toBe(i + 1)
+    })
   })
 
   it('each walk has all required fields', () => {
@@ -13,12 +16,6 @@ describe('walks data', () => {
       REQUIRED_WALK_FIELDS.forEach((field) => {
         expect(walk, `walk ${walk?.id} missing field: ${field}`).toHaveProperty(field)
       })
-    })
-  })
-
-  it('walk ids are 1-12 in order', () => {
-    walks.forEach((walk, i) => {
-      expect(walk.id).toBe(i + 1)
     })
   })
 

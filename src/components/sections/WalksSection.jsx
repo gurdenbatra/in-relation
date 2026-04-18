@@ -67,6 +67,9 @@ export default function WalksSection() {
 
   function handleToggle(id) { setOpenId((prev) => (prev === id ? null : id)) }
 
+  const walkCount = walks.length
+  const walksDoneLabel = `${walkCount} walk${walkCount === 1 ? '' : 's'} done`
+
   // Trigger sit→stand when user reaches the NextWalks section
   useEffect(() => {
     const nextWalksSection = document.getElementById('next-walks')
@@ -101,7 +104,7 @@ export default function WalksSection() {
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
           <div>
             <p className="text-xs tracking-widest uppercase font-semibold mb-3" style={{ color: '#a08060' }}>
-              12 walks done
+              {walksDoneLabel}
             </p>
             <h2 className="font-light" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', color: '#2d2520' }}>
               and now we <strong className="font-bold">write</strong>

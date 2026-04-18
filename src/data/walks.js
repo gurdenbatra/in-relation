@@ -157,7 +157,7 @@ export const walks = [
     scrollMultiplier: 0.6,
   },
   {
-    id: 12,
+    id: 13,
     name: 'Südkiez:',
     location: 'Südkiez:, Freidrichshain',
     date: 'March 2026',
