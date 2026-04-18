@@ -186,15 +186,9 @@ export const walks = [
 
 export const nextWalks = [
   {
-    id: 13,
+    id: 15,
     location: 'TBA — Berlin',
     date: 'Coming soon',
     teaser: 'The next conscious walk. Details to be announced via Signal.',
-  },
-  {
-    id: 14,
-    location: 'TBA — Berlin',
-    date: 'Coming soon',
-    teaser: 'More walks are planned. Join the Signal group to stay informed.',
   },
 ]
