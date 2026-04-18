@@ -10,7 +10,17 @@ export default function ThreeScene({ objectType = 'cobblestone', scrollYRef, cla
 
   if (isMobile) {
     return (
-      <div style={{ position: 'absolute', width: 120, height: 120, pointerEvents: 'none', zIndex: 10, ...mobilePosition }}>
+      <div
+        style={{
+          position: 'absolute',
+          width: 120,
+          height: 120,
+          pointerEvents: 'none',
+          /* Above PeopleSection founders photo (z-10); below NarrativeSection copy (z-20) */
+          zIndex: 15,
+          ...mobilePosition,
+        }}
+      >
         <Canvas camera={{ position: [0, 0, 3], fov: 45 }} dpr={[1, 1.5]}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[3, 5, 3]} intensity={0.8} />
