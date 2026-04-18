@@ -96,7 +96,7 @@ function removeLegacyRastersInPublic(safeBase) {
   }
 }
 
-async function convertRasterToWebp(srcPath, outPath, ext) {
+export async function convertRasterToWebp(srcPath, outPath, ext) {
   if (ext === '.heic' && process.platform === 'darwin') {
     await sipsHeicToPngThenWebp(srcPath, outPath)
     return

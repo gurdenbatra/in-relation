@@ -11,8 +11,9 @@
     "test": "vitest",
     "test:run": "vitest run",
     "convert-images": "node scripts/convert-images.js",
-    "predev": "npm run convert-images",
-    "prebuild": "npm run convert-images"
+    "sync-walk-images": "node scripts/sync-walk-images.js",
+    "predev": "npm run sync-walk-images && npm run convert-images",
+    "prebuild": "npm run sync-walk-images && npm run convert-images"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

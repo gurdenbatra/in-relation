@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { walks, nextWalks } from '../src/data/walks.js'
+import { walkImageAssets } from '../src/data/walkImageAssets.js'
 
-const REQUIRED_WALK_FIELDS = ['id', 'name', 'location', 'question', 'images', 'hasPlaceholder', 'journalText', 'threeObjectType']
+const REQUIRED_WALK_FIELDS = ['id', 'name', 'location', 'question', 'hasPlaceholder', 'journalText', 'threeObjectType']
 
 describe('walks data', () => {
   it('walk ids run from 1 to walks.length without gaps', () => {
@@ -19,9 +20,10 @@ describe('walks data', () => {
     })
   })
 
-  it('each walk has at least one image or hasPlaceholder is true', () => {
+  it('each walk has at least one synced image or hasPlaceholder is true', () => {
     walks.forEach((walk) => {
-      const valid = walk.hasPlaceholder || walk.images.length > 0
+      const n = walkImageAssets[walk.id]?.length ?? 0
+      const valid = walk.hasPlaceholder || n > 0
       expect(valid, `walk ${walk.id} has no images and hasPlaceholder is false`).toBe(true)
     })
   })

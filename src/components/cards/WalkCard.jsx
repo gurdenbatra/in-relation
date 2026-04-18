@@ -1,10 +1,29 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import WalkJournal from './WalkJournal.jsx'
+import { walkImageAssets } from '../../data/walkImageAssets.js'
+
+function pickDisplayFromPool(urls) {
+  if (!urls?.length) return { cover: null, inline: null, journalGallery: [] }
+  if (urls.length === 1) {
+    return { cover: urls[0], inline: null, journalGallery: [] }
+  }
+  const a = Math.floor(Math.random() * urls.length)
+  let b = Math.floor(Math.random() * urls.length)
+  for (let n = 0; n < 24 && b === a; n++) {
+    b = Math.floor(Math.random() * urls.length)
+  }
+  const used = new Set([urls[a], urls[b]])
+  const journalGallery = urls.filter((u) => !used.has(u))
+  return { cover: urls[a], inline: urls[b], journalGallery }
+}
 
 export default function WalkCard({ walk, isOpen, onToggle }) {
-  const coverImage  = walk.images[0] ?? null
-  const inlineImage = walk.images[1] ?? null
+  const pool = walkImageAssets[walk.id] ?? []
+  const [display] = useState(() => pickDisplayFromPool(pool))
+  const { cover, inline, journalGallery } = display
+  const coverImage = cover
+  const inlineImage = inline
 
   return (
     <article
@@ -205,7 +224,11 @@ export default function WalkCard({ walk, isOpen, onToggle }) {
                 background: '#f5f0e8',
               }}
             >
-              <WalkJournal walk={walk} />
+              <WalkJournal
+                walk={walk}
+                galleryImages={journalGallery}
+                videoPosterSrc={coverImage}
+              />
             </div>
           </motion.div>
         )}
