@@ -140,7 +140,7 @@ export default function NextWalksSection() {
       </div>
 
       {/* Signal CTA */}
-      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 28px' }}>
+      {/* <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 28px' }}>
         <p
           className="font-light mb-6 leading-relaxed max-w-md"
           style={{ color: '#7c6f5e' }}
@@ -165,7 +165,7 @@ export default function NextWalksSection() {
           </svg>
           Join via Signal
         </a>
-      </div>
+      </div> */}
     </section>
   )
 }
