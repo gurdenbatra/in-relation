@@ -142,8 +142,11 @@ export default function RoadFork() {
       <div className="relative z-10 flex flex-1 flex-col w-full max-w-4xl mx-auto px-4">
         {/* Fork label — larger, higher in section */}
         <p
-          className="text-center uppercase font-semibold shrink-0"
+          className="text-center uppercase shrink-0"
           style={{
+            fontFamily: 'var(--font-sans)',
+            fontVariationSettings: "'wdth' 100, 'opsz' 14",
+            fontWeight: 600,
             color: '#a08060',
             opacity: 0.88,
             fontSize: 'clamp(0.9375rem, 2.4vw, 1.1875rem)',
@@ -169,8 +172,12 @@ export default function RoadFork() {
               style={{ opacity: walking === 'right' ? 0.3 : 1 }}
             >
               <div
-                className="flex items-center gap-2 font-semibold tracking-wide px-6 py-3 cursor-pointer"
+                className="flex items-center gap-2 px-6 py-3 cursor-pointer"
                 style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontVariationSettings: "'wdth' 90, 'opsz' 14",
+                  fontWeight: 600,
+                  letterSpacing: '0.04em',
                   background: hoverFork === 'left' ? '#b8a888' : '#c8b89a',
                   color: '#2d2520',
                   fontSize: '14px',
@@ -188,7 +195,7 @@ export default function RoadFork() {
               >
                 ← and now we write
               </div>
-              <span style={{ fontSize: '11px', letterSpacing: '0.12em', color: '#7c6f5e', textTransform: 'uppercase' }}>walks done</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.22em', color: '#7c6f5e', textTransform: 'uppercase' }}>walks done</span>
             </button>
 
             {/* Divider */}
@@ -204,8 +211,12 @@ export default function RoadFork() {
               style={{ opacity: walking === 'left' ? 0.3 : 1 }}
             >
               <div
-                className="flex items-center gap-2 font-semibold tracking-wide px-6 py-3 cursor-pointer"
+                className="flex items-center gap-2 px-6 py-3 cursor-pointer"
                 style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontVariationSettings: "'wdth' 90, 'opsz' 14",
+                  fontWeight: 600,
+                  letterSpacing: '0.04em',
                   background: hoverFork === 'right' ? '#3d342c' : '#2d2520',
                   color: '#f5f0e8',
                   fontSize: '14px',
@@ -223,13 +234,13 @@ export default function RoadFork() {
               >
                 and now we walk →
               </div>
-              <span style={{ fontSize: '11px', letterSpacing: '0.12em', color: '#7c6f5e', textTransform: 'uppercase' }}>what's next</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.22em', color: '#7c6f5e', textTransform: 'uppercase' }}>what's next</span>
             </button>
           </div>
 
           {/* Scroll hint (before unlocked) */}
           {!unlocked && scrollAttempts === 0 && (
-            <p style={{ fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#a08060', opacity: 0.5, marginTop: '4px' }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#a08060', opacity: 0.5, marginTop: '4px' }}>
               choose a path or keep scrolling
             </p>
           )}
@@ -246,17 +257,21 @@ export default function RoadFork() {
             transition: 'opacity 0.8s ease, transform 0.8s ease',
           }}
         >
+          {/* A dare is a statement, not a question — goes upright, heavy Fraunces.
+              The wonky soft axis keeps it warm, not aggressive. */}
           <p
             style={{
-              fontFamily: '"Cormorant Garamond", Georgia, "Times New Roman", serif',
-              fontSize: 'clamp(1.5rem, 3.2vw, 2rem)',
-              fontWeight: 600,
-              fontStyle: 'italic',
+              fontFamily: 'var(--font-display)',
+              fontVariationSettings: "'opsz' 144, 'SOFT' 60, 'WONK' 1",
+              fontSize: 'clamp(1.75rem, 4.4vw, 3rem)',
+              fontWeight: 700,
+              fontStyle: 'normal',
               color: '#2d2520',
-              letterSpacing: '0.04em',
-              lineHeight: 1.35,
-              maxWidth: '22em',
+              letterSpacing: '-0.022em',
+              lineHeight: 1.05,
+              maxWidth: '14em',
               margin: '0 auto',
+              textWrap: 'balance',
             }}
           >
             Dare to take a walk with us.

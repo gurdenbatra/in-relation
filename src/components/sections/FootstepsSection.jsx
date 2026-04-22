@@ -192,8 +192,15 @@ export default function FootstepsSection() {
         </div>
       ))}
       <p
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-sm tracking-widest uppercase"
-        style={{ opacity: 0.5, color: '#a08060' }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '11px',
+          letterSpacing: '0.32em',
+          textTransform: 'uppercase',
+          opacity: 0.55,
+          color: '#a08060',
+        }}
       >
         and now we walk ↓
       </p>

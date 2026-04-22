@@ -53,8 +53,20 @@ export default function NarrativeSection() {
       ))}
       <ThreeScene objectType="cobblestone" className="absolute bottom-12 left-12 w-36 h-36 hidden md:block" mobilePosition={{ bottom: '16px', left: '16px' }} />
       <div className="relative z-20 max-w-lg mx-8 text-center" style={{ background: 'rgba(245,240,232,0.82)', backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)', borderRadius: '4px', padding: '48px 40px' }}>
-        <p className="font-light leading-relaxed" style={{ fontSize: '28px', color: '#2d2520' }}>
-          When was the last time the city <strong className="font-bold">whispered its secrets</strong> to you?
+        <p style={{
+          fontFamily: 'var(--font-display)',
+          fontStyle: 'italic',
+          fontWeight: 300,
+          fontVariationSettings: "'opsz' 96, 'SOFT' 80, 'WONK' 1",
+          fontSize: 'clamp(24px, 3.4vw, 36px)',
+          lineHeight: 1.2,
+          letterSpacing: '-0.014em',
+          color: '#2d2520',
+          textWrap: 'balance',
+        }}>
+          When was the last time the city{' '}
+          <em style={{ fontStyle: 'italic', fontWeight: 500 }}>whispered its secrets</em>{' '}
+          to you?
         </p>
       </div>
     </section>

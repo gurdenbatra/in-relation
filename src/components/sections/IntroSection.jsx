@@ -291,16 +291,32 @@ export default function IntroSection() {
             opacity: 0, transition: 'opacity 0.1s, transform 0.1s',
           }}
         >
+          {/* Hero whisper — Fraunces italic, organic (WONK=1, SOFT=100).
+              Bigger + tighter than before. Intentional line breaks so the sentence
+              reads as three breaths, with "whispered its secrets" carrying the weight. */}
           <p style={{
-            fontFamily: 'Georgia, "Times New Roman", serif',
+            fontFamily: 'var(--font-display)',
             fontStyle: 'italic',
             fontWeight: 300,
-            fontSize: 'clamp(20px, 3.5vw, 38px)',
+            fontVariationSettings: "'opsz' 144, 'SOFT' 100, 'WONK' 1",
+            fontSize: 'clamp(30px, 6vw, 76px)',
             color: '#ede8df',
-            lineHeight: 1.5,
-            letterSpacing: '0.01em',
+            lineHeight: 1.08,
+            letterSpacing: '-0.022em',
+            textWrap: 'balance',
+            maxWidth: '18ch',
+            margin: '0 auto',
           }}>
-            When was the last time the city whispered its secrets to you?
+            When was the last time the city{' '}
+            <em style={{
+              fontStyle: 'italic',
+              fontWeight: 500,
+              fontVariationSettings: "'opsz' 144, 'SOFT' 80, 'WONK' 1",
+              color: '#faf6ec',
+            }}>
+              whispered its secrets
+            </em>{' '}
+            to you?
           </p>
         </div>
 
@@ -316,6 +332,9 @@ export default function IntroSection() {
         </div>
 
         {/* === Layer 3: IN RELATION stamp — anchored to midpoint of path === */}
+        {/* IN RELATION stamp — Fraunces 900 at opsz 144 (the "inky" preset).
+            Tight negative tracking so the letters crowd like real stamped ink.
+            Thicker frame, subtle tilt, dual shadow for a pressed-into-paper feel. */}
         <div
           ref={stampWrapRef}
           className="intro-stamp-wrap"
@@ -323,10 +342,11 @@ export default function IntroSection() {
             position: 'absolute',
             top: heroSteps[STAMP_STEP_INDEX]?.top ?? '50%',
             left: heroSteps[STAMP_STEP_INDEX]?.left ?? '50%',
-            transform: 'translate(-50%, -50%) scale(1.12)',
+            transform: 'translate(-50%, -50%) rotate(-2.4deg) scale(1.12)',
             opacity: 0,
-            border: '7px solid rgba(245,240,232,0.9)',
-            padding: '10px 32px',
+            border: '9px solid rgba(245,240,232,0.92)',
+            boxShadow: 'inset 0 0 0 2px rgba(245,240,232,0.18), 0 2px 0 rgba(0,0,0,0.18)',
+            padding: '6px 34px 14px',
             whiteSpace: 'nowrap',
             transition: 'margin-top 0.1s',
             zIndex: 6,
@@ -336,14 +356,16 @@ export default function IntroSection() {
             <Footstep side="right" scale={1.35} style={{ filter: 'brightness(1.3) opacity(0.95)' }} />
           </div>
           <p style={{
-            fontFamily: '"Cormorant Garamond", Georgia, serif',
-            fontWeight: 700,
-            fontSize: 'clamp(44px, 10vw, 90px)',
-            color: 'rgba(245,240,232,0.92)',
-            letterSpacing: '0.02em',
-            lineHeight: 1,
+            fontFamily: 'var(--font-display)',
+            fontWeight: 900,
+            fontVariationSettings: "'opsz' 144, 'SOFT' 20, 'WONK' 1",
+            fontSize: 'clamp(64px, 15.5vw, 184px)',
+            color: 'rgba(245,240,232,0.96)',
+            letterSpacing: '-0.035em',
+            lineHeight: 0.84,
             textAlign: 'center',
             textTransform: 'uppercase',
+            textShadow: '0 0 1px rgba(245,240,232,0.18)',
           }}>
             IN<br />RELATION
           </p>
@@ -358,23 +380,37 @@ export default function IntroSection() {
             opacity: 0, transition: 'opacity 0.1s, transform 0.1s',
           }}
         >
+          {/* Subtitle — Fraunces italic, quote preset. Bigger than before so it
+              answers the whisper instead of muttering after it. Widened tracking
+              gives it the breath of a spoken question. */}
           <p style={{
-            fontWeight: 300,
-            fontSize: 'clamp(16px, 2vw, 22px)',
-            color: 'rgba(245,240,232,0.75)',
-            letterSpacing: '0.04em',
+            fontFamily: 'var(--font-display)',
+            fontStyle: 'italic',
+            fontWeight: 400,
+            fontVariationSettings: "'opsz' 96, 'SOFT' 60, 'WONK' 1",
+            fontSize: 'clamp(20px, 3.4vw, 40px)',
+            color: 'rgba(245,240,232,0.82)',
+            letterSpacing: '0.002em',
+            lineHeight: 1.25,
+            textWrap: 'balance',
+            maxWidth: '22ch',
+            margin: '0 auto',
           }}>
-            What if all you needed was a conscious walk?
+            What if all you needed was a{' '}
+            <span style={{ fontWeight: 500, color: 'rgba(250,246,236,0.94)' }}>
+              conscious walk
+            </span>?
           </p>
         </div>
 
         {/* Scroll hint — fades out as user starts scrolling */}
         <p style={{
           position: 'absolute', bottom: '6%', left: '50%', transform: 'translateX(-50%)',
-          fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase',
-          color: 'rgba(200,184,154,0.5)', userSelect: 'none',
+          fontFamily: 'var(--font-mono)',
+          fontSize: '10px', letterSpacing: '0.32em', textTransform: 'uppercase',
+          color: 'rgba(200,184,154,0.55)', userSelect: 'none',
         }}>
-          scroll
+          scroll ↓
         </p>
       </div>
     </section>

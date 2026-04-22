@@ -46,8 +46,18 @@ export default function StampSection() {
           <Footstep side={pos.side} scale={pos.scale} />
         </div>
       ))}
-      <div ref={stampRef} className="absolute" style={{ top: '52%', left: '50%', marginLeft: '-120px', opacity: 0, border: '8px solid #2d2520', padding: '8px 28px', display: 'inline-block' }}>
-        <p className="font-black tracking-tight leading-none text-center" style={{ fontSize: 'clamp(48px,10vw,96px)', color: '#2d2520' }}>IN<br />RELATION</p>
+      <div ref={stampRef} className="absolute" style={{ top: '52%', left: '50%', marginLeft: '-140px', opacity: 0, border: '9px solid #2d2520', boxShadow: 'inset 0 0 0 2px rgba(45,37,32,0.18)', padding: '6px 32px 14px', display: 'inline-block', transform: 'rotate(-2.4deg)' }}>
+        <p style={{
+          fontFamily: 'var(--font-display)',
+          fontWeight: 900,
+          fontVariationSettings: "'opsz' 144, 'SOFT' 20, 'WONK' 1",
+          fontSize: 'clamp(56px, 12vw, 128px)',
+          color: '#2d2520',
+          letterSpacing: '-0.035em',
+          lineHeight: 0.84,
+          textAlign: 'center',
+          textTransform: 'uppercase',
+        }}>IN<br />RELATION</p>
       </div>
     </section>
   )

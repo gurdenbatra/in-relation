@@ -10,9 +10,48 @@ export default function PeopleSection() {
           <img src="/images/IMG_2679.webp" alt="Blasius and Gurden, founders of In Relation" className="w-full h-auto object-cover" loading="lazy" />
         </div>
         <div>
-          <p className="text-xs tracking-widest uppercase font-semibold mb-4" style={{ color: '#a08060' }}>We found ourselves asking these questions</p>
-          <h2 className="font-light mb-2" style={{ fontSize: '2.5rem', color: '#2d2520' }}>Blasius <strong className="font-bold">&amp;</strong> Gurden</h2>
-          <p className="font-light leading-relaxed mt-4 max-w-sm" style={{ color: '#7c6f5e' }}>Two people who believe that walking slowly through a city is a radical act. In Relation began as a conversation about attention, and grew into a practice.</p>
+          <p style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '11px',
+            letterSpacing: '0.28em',
+            textTransform: 'uppercase',
+            color: '#a08060',
+            marginBottom: '18px',
+          }}>
+            We found ourselves asking these questions
+          </p>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontVariationSettings: "'opsz' 144, 'SOFT' 60, 'WONK' 1",
+            fontWeight: 400,
+            fontSize: 'clamp(2.25rem, 5.5vw, 3.5rem)',
+            color: '#2d2520',
+            letterSpacing: '-0.022em',
+            lineHeight: 1.02,
+            marginBottom: '8px',
+          }}>
+            Blasius{' '}
+            <em style={{
+              fontStyle: 'italic',
+              fontWeight: 500,
+              fontVariationSettings: "'opsz' 144, 'SOFT' 100, 'WONK' 1",
+            }}>
+              &amp;
+            </em>{' '}
+            Gurden
+          </h2>
+          <p style={{
+            fontFamily: 'var(--font-sans)',
+            fontVariationSettings: "'wdth' 100, 'opsz' 18",
+            fontWeight: 400,
+            fontSize: '17px',
+            lineHeight: 1.55,
+            color: '#7c6f5e',
+            marginTop: '20px',
+            maxWidth: '26rem',
+          }}>
+            Two people who believe that walking slowly through a city is a radical act. In Relation began as a conversation about attention, and grew into a practice.
+          </p>
         </div>
       </div>
     </section>

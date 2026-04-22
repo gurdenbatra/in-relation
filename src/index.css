@@ -1,6 +1,12 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap');
+/* Fraunces — variable serif with opsz, SOFT, WONK axes.
+   Carries editorial italic (whispers, questions) AND the inky display stamp. */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&display=swap');
+/* Bricolage Grotesque — humanist grotesque with width + opsz axes.
+   Replaces Inter. UI, labels, micro-type. Its narrow weights give the stamp a grotesque cousin. */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap');
+/* JetBrains Mono — techno-Berlin edge for dates & numerical meta only. */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 @theme {
   --color-cream: #f5f0e8;
@@ -9,7 +15,9 @@
   --color-sand-accent: #a08060;
   --color-text-primary: #2d2520;
   --color-text-secondary: #7c6f5e;
-  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-sans: 'Bricolage Grotesque', 'Inter Tight', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-display: 'Fraunces', 'Walbaum', 'Hoefler Text', Georgia, serif;
+  --font-family-mono: 'JetBrains Mono', ui-monospace, 'Menlo', monospace;
 }
 
 :root {
@@ -19,6 +27,27 @@
   --sand-accent: #a08060;
   --text-primary: #2d2520;
   --text-secondary: #7c6f5e;
+
+  /* Type system — two voices, both variable, both wonky-organic.
+     Fraunces = editorial + stamp.  Bricolage = UI + labels.  Mono = data. */
+  --font-display: 'Fraunces', 'Walbaum', 'Hoefler Text', Georgia, serif;
+  --font-sans:    'Bricolage Grotesque', 'Inter Tight', 'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'Menlo', monospace;
+
+  /* Fraunces variation-settings presets.
+     Organic = soft-crooked (whisper, italic quotes).
+     Stamp   = inky, tight, wonky but upright (rubber-stamp ink).
+     Quote   = mid-display italic (card questions, narrative).
+     Body    = text-size, neutral. */
+  --fr-organic: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+  --fr-stamp:   'opsz' 144, 'SOFT'  20, 'WONK' 1;
+  --fr-quote:   'opsz'  96, 'SOFT'  60, 'WONK' 1;
+  --fr-body:    'opsz'  36, 'SOFT'  30, 'WONK' 0;
+
+  /* Bricolage presets. Condensed widths feel Berlin-poster; wide feels spacious. */
+  --bc-label:  'wdth' 100, 'opsz' 14;
+  --bc-narrow: 'wdth'  85, 'opsz' 96;
+  --bc-wide:   'wdth' 115, 'opsz' 36;
 }
 
 * { box-sizing: border-box; }
@@ -26,9 +55,21 @@ html { scroll-behavior: auto; }
 body {
   background-color: var(--cream);
   color: var(--text-primary);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-sans);
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
+
+/* Reusable type classes so code stays readable when we reference them inline. */
+.t-display  { font-family: var(--font-display); font-variation-settings: var(--fr-organic); }
+.t-stamp    { font-family: var(--font-display); font-variation-settings: var(--fr-stamp); }
+.t-quote    { font-family: var(--font-display); font-variation-settings: var(--fr-quote); font-style: italic; }
+.t-label    { font-family: var(--font-sans);    font-variation-settings: var(--bc-label);
+              text-transform: uppercase; letter-spacing: 0.18em; }
+.t-mono     { font-family: var(--font-mono); font-feature-settings: 'tnum', 'ss01'; }
 
 @keyframes stamp-land {
   0%   { transform: translate(-50%, -50%) scale(1.15); opacity: 0.6; }

@@ -2,7 +2,16 @@
 export default function WalkJournal({ walk, galleryImages = [], videoPosterSrc }) {
   return (
     <div>
-      <p className="font-light leading-relaxed mb-6" style={{ fontSize: '15px', color: '#7c6f5e', maxWidth: '600px' }}>{walk.journalText}</p>
+      <p style={{
+        fontFamily: 'var(--font-sans)',
+        fontVariationSettings: "'wdth' 100, 'opsz' 18",
+        fontWeight: 400,
+        fontSize: '16px',
+        lineHeight: 1.6,
+        color: '#6e604f',
+        maxWidth: '36rem',
+        marginBottom: '24px',
+      }}>{walk.journalText}</p>
       {galleryImages.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
           {galleryImages.map((src, i) => (
@@ -19,7 +28,16 @@ export default function WalkJournal({ walk, galleryImages = [], videoPosterSrc }
           </video>
         </div>
       )}
-      {walk.hasPlaceholder && <p className="text-xs italic mt-2" style={{ color: '#a08060' }}>Photos from this walk coming soon.</p>}
+      {walk.hasPlaceholder && (
+        <p style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '10px',
+          letterSpacing: '0.22em',
+          textTransform: 'uppercase',
+          color: '#a08060',
+          marginTop: '10px',
+        }}>Photos from this walk coming soon</p>
+      )}
     </div>
   )
 }

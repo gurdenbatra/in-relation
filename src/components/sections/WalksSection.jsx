@@ -103,11 +103,35 @@ export default function WalksSection() {
       >
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <p className="text-xs tracking-widest uppercase font-semibold mb-3" style={{ color: '#a08060' }}>
+            <p style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '11px',
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              color: '#a08060',
+              marginBottom: '14px',
+            }}>
               {walksDoneLabel}
             </p>
-            <h2 className="font-light" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', color: '#2d2520' }}>
-              and now we <strong className="font-bold">write</strong>
+            {/* Display pair: roman Fraunces + italic emphasis. The italic on the
+                verb is the whole point — the action of "writing" leans in. */}
+            <h2 style={{
+              fontFamily: 'var(--font-display)',
+              fontVariationSettings: "'opsz' 144, 'SOFT' 50, 'WONK' 1",
+              fontWeight: 400,
+              fontSize: 'clamp(2.25rem, 6.2vw, 4rem)',
+              color: '#2d2520',
+              letterSpacing: '-0.022em',
+              lineHeight: 1,
+            }}>
+              and now we{' '}
+              <em style={{
+                fontStyle: 'italic',
+                fontWeight: 600,
+                fontVariationSettings: "'opsz' 144, 'SOFT' 80, 'WONK' 1",
+              }}>
+                write
+              </em>
             </h2>
           </div>
           {/* Bench illustration with sit→stand animation */}

@@ -17,11 +17,33 @@ export default function NextWalksSection() {
           marginBottom: '56px',
         }}
       >
-        <p className="text-xs tracking-widest uppercase font-semibold mb-3" style={{ color: '#a08060' }}>
+        <p style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '11px',
+          letterSpacing: '0.28em',
+          textTransform: 'uppercase',
+          color: '#a08060',
+          marginBottom: '14px',
+        }}>
           coming up
         </p>
-        <h2 className="font-light" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', color: '#2d2520' }}>
-          and now we <strong className="font-bold">walk</strong>
+        <h2 style={{
+          fontFamily: 'var(--font-display)',
+          fontVariationSettings: "'opsz' 144, 'SOFT' 50, 'WONK' 1",
+          fontWeight: 400,
+          fontSize: 'clamp(2.25rem, 6.2vw, 4rem)',
+          color: '#2d2520',
+          letterSpacing: '-0.022em',
+          lineHeight: 1,
+        }}>
+          and now we{' '}
+          <em style={{
+            fontStyle: 'italic',
+            fontWeight: 600,
+            fontVariationSettings: "'opsz' 144, 'SOFT' 80, 'WONK' 1",
+          }}>
+            walk
+          </em>
         </h2>
       </div>
 
@@ -56,19 +78,23 @@ export default function NextWalksSection() {
             >
               <span
                 style={{
-                  fontWeight: 900,
-                  fontSize: '36px',
+                  fontFamily: 'var(--font-display)',
+                  fontVariationSettings: "'opsz' 144, 'SOFT' 40, 'WONK' 1",
+                  fontFeatureSettings: '"tnum", "lnum"',
+                  fontWeight: 800,
+                  fontSize: '48px',
                   lineHeight: 1,
                   color: '#d4c4a8',
-                  letterSpacing: '-0.03em',
+                  letterSpacing: '-0.04em',
                 }}
               >
                 {String(walk.id).padStart(2, '0')}
               </span>
               <span
                 style={{
-                  fontSize: '11px',
-                  letterSpacing: '0.12em',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '10px',
+                  letterSpacing: '0.22em',
                   textTransform: 'uppercase',
                   color: '#a08060',
                   writingMode: 'vertical-rl',
@@ -85,25 +111,30 @@ export default function NextWalksSection() {
               <div>
                 <p
                   style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontVariationSettings: "'wdth' 100, 'opsz' 14",
                     fontSize: '11px',
-                    letterSpacing: '0.18em',
+                    letterSpacing: '0.2em',
                     textTransform: 'uppercase',
                     fontWeight: 600,
                     color: '#a08060',
-                    marginBottom: '12px',
+                    marginBottom: '14px',
                   }}
                 >
                   {walk.location}
                 </p>
                 <h3
                   style={{
-                    fontFamily: 'Georgia, "Times New Roman", serif',
+                    fontFamily: 'var(--font-display)',
                     fontStyle: 'italic',
                     fontWeight: 400,
-                    fontSize: 'clamp(20px, 3vw, 30px)',
+                    fontVariationSettings: "'opsz' 96, 'SOFT' 60, 'WONK' 1",
+                    fontSize: 'clamp(22px, 3.4vw, 34px)',
                     color: '#2d2520',
-                    lineHeight: 1.35,
+                    lineHeight: 1.22,
+                    letterSpacing: '-0.01em',
                     marginBottom: '16px',
+                    textWrap: 'balance',
                   }}
                 >
                   {walk.teaser}
@@ -116,8 +147,9 @@ export default function NextWalksSection() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  fontSize: '12px',
-                  letterSpacing: '0.12em',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '10px',
+                  letterSpacing: '0.22em',
                   textTransform: 'uppercase',
                   color: '#a08060',
                 }}

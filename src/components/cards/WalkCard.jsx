@@ -56,19 +56,23 @@ export default function WalkCard({ walk, isOpen, onToggle }) {
         >
           <span
             style={{
-              fontWeight: 900,
-              fontSize: '36px',
+              fontFamily: 'var(--font-display)',
+              fontVariationSettings: "'opsz' 144, 'SOFT' 40, 'WONK' 1",
+              fontFeatureSettings: '"tnum", "lnum"',
+              fontWeight: 800,
+              fontSize: '48px',
               lineHeight: 1,
               color: '#d4c4a8',
-              letterSpacing: '-0.03em',
+              letterSpacing: '-0.04em',
             }}
           >
             {String(walk.id).padStart(2, '0')}
           </span>
           <span
             style={{
-              fontSize: '11px',
-              letterSpacing: '0.12em',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '10px',
+              letterSpacing: '0.22em',
               textTransform: 'uppercase',
               color: '#a08060',
               writingMode: 'vertical-rl',
@@ -110,7 +114,7 @@ export default function WalkCard({ walk, isOpen, onToggle }) {
                 flexShrink: 0,
               }}
             >
-              <span style={{ fontSize: '12px', letterSpacing: '0.1em', color: '#a08060', textTransform: 'uppercase' }}>Photos coming soon</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.22em', color: '#a08060', textTransform: 'uppercase' }}>Photos coming soon</span>
             </div>
           )}
 
@@ -119,31 +123,37 @@ export default function WalkCard({ walk, isOpen, onToggle }) {
             {/* Location label */}
             <p
               style={{
+                fontFamily: 'var(--font-sans)',
+                fontVariationSettings: "'wdth' 100, 'opsz' 14",
                 fontSize: '11px',
-                letterSpacing: '0.18em',
+                letterSpacing: '0.2em',
                 textTransform: 'uppercase',
                 fontWeight: 600,
                 color: '#a08060',
-                marginBottom: '12px',
+                marginBottom: '14px',
               }}
             >
               {walk.location}
             </p>
 
-            {/* Walk question — headline */}
+            {/* Walk question — Fraunces italic, quote preset. Curly quotes (these
+                are real spoken questions), tighter leading, more size. */}
             <h3
               style={{
-                fontFamily: 'Georgia, "Times New Roman", serif',
+                fontFamily: 'var(--font-display)',
                 fontStyle: 'italic',
                 fontWeight: 400,
-                fontSize: 'clamp(22px, 3.5vw, 36px)',
+                fontVariationSettings: "'opsz' 96, 'SOFT' 60, 'WONK' 1",
+                fontSize: 'clamp(24px, 3.8vw, 40px)',
                 color: '#2d2520',
-                lineHeight: 1.3,
+                lineHeight: 1.18,
+                letterSpacing: '-0.012em',
                 marginBottom: '28px',
                 maxWidth: '640px',
+                textWrap: 'balance',
               }}
             >
-              "{walk.question}"
+              {'\u201C'}{walk.question}{'\u201D'}
             </h3>
 
             {/* Inline second image, if available */}
@@ -175,9 +185,10 @@ export default function WalkCard({ walk, isOpen, onToggle }) {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '6px',
-                fontSize: '12px',
-                letterSpacing: '0.1em',
+                gap: '8px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '10px',
+                letterSpacing: '0.22em',
                 textTransform: 'uppercase',
                 color: '#7c6f5e',
                 background: 'none',
